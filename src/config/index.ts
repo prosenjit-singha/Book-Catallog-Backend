@@ -17,6 +17,7 @@ const cookieOptions = {
 };
 
 export default {
+  port: process.env.PORT || 5000,
   node_env: process.env.NODE_ENV || "production",
   jwt,
   cookieOptions,
