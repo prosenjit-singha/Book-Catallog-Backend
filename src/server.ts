@@ -5,7 +5,6 @@ moduleAlias.addAlias("@", __dirname);
 import app from "./app";
 import { Server } from "http";
 import config from "@/config";
-// import { connectDB } from "@/helpers";
 
 process.on("uncaughtException", (error) => {
   console.log("UncaughtException", error);
@@ -16,9 +15,6 @@ let server: Server;
 
 async function main() {
   try {
-    // await connectDB();
-    // console.log(`🛢 Database is connected successfully!`);
-
     server = app.listen(config.port, () => {
       console.log(`⚡Application listening on port - ${config.port}`);
     });
