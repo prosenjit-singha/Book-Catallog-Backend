@@ -10,25 +10,76 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id String @unique @default(uuid())
-  name String
-  email String
-  password String
-  role String
-  contactNo String
-  address String
-  profileImg String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String            @id @unique @default(uuid())
+  name             String
+  email            String            @unique
+  password         String
+  role             UserRole?         @default(customer)
+  contactNo        String
+  address          String
+  profileImg       String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  orders           Order[]
+  reviewAndRatings ReviewAndRating[]
+
+  @@map("users")
 }
 
 model Category {
-  id String @id @unique @default(uuid())
-  title String
+  id        String   @id @unique @default(uuid())
+  title     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  books     Book[]
+
   @@map("categories")
 }
 
+model Book {
+  id               String            @id @unique @default(uuid())
+  title            String
+  author           String
+  price            Float
+  genre            String
+  publicationDate  DateTime
+  categoryId       String
+  category         Category          @relation(fields: [categoryId], references: [id])
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  reviewAndRatings ReviewAndRating[]
+
+  @@map("books")
+}
+
+model Order {
+  id            String   @unique @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  orderedBookes Json
+  status        String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model ReviewAndRating {
+  id        String   @id @unique @default(uuid())
+  review    String
+  rating    Int
+  userId    String
+  bookId    String
+  user      User     @relation(fields: [userId], references: [id])
+  book      Book     @relation(fields: [bookId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("review-and-ratings")
+}
+
+enum UserRole {
+  admin
+  customer
+}
