@@ -61,27 +61,35 @@ export const getAllBooks = async (query: Record<string, any>) => {
     skip,
     take: limit,
     orderBy: { [sortBy]: sortOrder },
-    include: {
-      category: true,
-      reviewAndRatings: {
-        include: {
-          user: true,
+    select: {
+      id: true,
+      title: true,
+      author: true,
+      categoryId: true,
+      category: {
+        select: {
+          title: true,
         },
+      },
+      genre: true,
+      price: true,
+      publicationDate: true,
+      reviewAndRatings: {
         select: {
           id: true,
-          rating: true,
           review: true,
+          rating: true,
           user: {
             select: {
               name: true,
-              profileImg: true,
               email: true,
             },
           },
           createdAt: true,
-          updatedAt: true,
         },
       },
+      createdAt: true,
+      updatedAt: true,
     },
   });
   const totalResults = await prisma.book.count({

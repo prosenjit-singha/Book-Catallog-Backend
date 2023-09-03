@@ -26,7 +26,7 @@ const moduleRoutes: ModuleRoutes = [
     route: CategoryRoute,
   },
   {
-    path: "/categories",
+    path: "/books",
     route: BookRoute,
   },
 ];
