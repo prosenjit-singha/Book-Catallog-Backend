@@ -5,13 +5,44 @@ import { BookConst } from "./book.const";
 import { paginationFields } from "@/constants";
 import calculatePagination from "@/helpers/pagination.helper";
 
+const select: Prisma.BookSelect = {
+  id: true,
+  title: true,
+  author: true,
+  categoryId: true,
+  category: {
+    select: {
+      title: true,
+    },
+  },
+  genre: true,
+  price: true,
+  publicationDate: true,
+  reviewAndRatings: {
+    select: {
+      id: true,
+      review: true,
+      rating: true,
+      user: {
+        select: {
+          name: true,
+          email: true,
+        },
+      },
+      createdAt: true,
+    },
+  },
+  createdAt: true,
+  updatedAt: true,
+};
+
 export const createBook = async (context: Book) => {
   const data = await prisma.book.create({ data: context });
   return data;
 };
 
 export const getSingleBook = async (id: string) => {
-  const result = await prisma.book.findUnique({ where: { id } });
+  const result = await prisma.book.findUnique({ where: { id }, select });
   return result;
 };
 
@@ -61,36 +92,7 @@ export const getAllBooks = async (query: Record<string, any>) => {
     skip,
     take: limit,
     orderBy: { [sortBy]: sortOrder },
-    select: {
-      id: true,
-      title: true,
-      author: true,
-      categoryId: true,
-      category: {
-        select: {
-          title: true,
-        },
-      },
-      genre: true,
-      price: true,
-      publicationDate: true,
-      reviewAndRatings: {
-        select: {
-          id: true,
-          review: true,
-          rating: true,
-          user: {
-            select: {
-              name: true,
-              email: true,
-            },
-          },
-          createdAt: true,
-        },
-      },
-      createdAt: true,
-      updatedAt: true,
-    },
+    select,
   });
   const totalResults = await prisma.book.count({
     where: whereConditions,
