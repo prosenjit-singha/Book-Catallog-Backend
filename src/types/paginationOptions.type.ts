@@ -1,10 +1,10 @@
-type SortOrder = "asc" | "desc";
+import { Prisma } from "@prisma/client";
 
 export type PaginationOptions = {
   page?: number;
   limit?: number;
   sortBy?: string;
-  sortOrder?: SortOrder;
+  sortOrder?: Prisma.SortOrder;
 };
 
 export type PaginationOptionsResult = {
@@ -12,5 +12,5 @@ export type PaginationOptionsResult = {
   limit: number;
   skip: number;
   sortBy: string;
-  sortOrder: SortOrder;
+  sortOrder: Prisma.SortOrder;
 };

@@ -6,12 +6,17 @@ import * as schema from "./book.validation";
 
 const router = express.Router();
 
-router.get("/", auth("admin", "customer"), ctrl.getAllBooks);
+router.get(
+  "/",
+  validateReq(schema.getAllBook),
+  auth("admin", "customer"),
+  ctrl.getAllBooks
+);
 
 router.post(
   "/",
   validateReq(schema.createBook),
-  auth("admin", "customer"),
+  auth("admin"),
   ctrl.createBook
 );
 

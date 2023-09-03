@@ -37,7 +37,10 @@ const select: Prisma.BookSelect = {
 };
 
 export const createBook = async (context: Book) => {
-  const data = await prisma.book.create({ data: context });
+  const data = await prisma.book.create({
+    data: context,
+    include: { category: { select: { id: true, title: true } } },
+  });
   return data;
 };
 
@@ -57,30 +60,48 @@ export const deleteBook = async (id: string) => {
 };
 
 export const getAllBooks = async (query: Record<string, any>) => {
-  const { searchTerm, ...filterData } = pick(query, BookConst.filterableFields);
+  const { search, ...filterData } = pick(query, BookConst.filterableFields);
   const options = pick(query, paginationFields);
   const { limit, page, skip, sortBy, sortOrder } = calculatePagination(options);
 
   const andConditions = [];
 
-  if (searchTerm) {
+  if (search) {
     andConditions.push({
-      OR: BookConst.searchableFields.map((field) => ({
-        [field]: {
-          contains: searchTerm,
-          mode: "insensitive",
-        },
-      })),
+      OR: BookConst.searchableFields.map((field) => {
+        return {
+          [field]: {
+            contains: search,
+            mode: "insensitive",
+          },
+        };
+      }),
     });
   }
 
   if (Object.keys(filterData).length > 0) {
     andConditions.push({
-      AND: Object.keys(filterData).map((key) => ({
-        [key]: {
-          equals: (filterData as any)[key],
-        },
-      })),
+      AND: Object.entries(filterData).map(([key, value]) => {
+        if (key === "minPrice") {
+          return {
+            price: {
+              gte: Number(value),
+            },
+          };
+        } else if (key === "maxPrice") {
+          return {
+            price: {
+              lte: Number(value),
+            },
+          };
+        }
+
+        return {
+          [key]: {
+            equals: value,
+          },
+        };
+      }),
     });
   }
 
