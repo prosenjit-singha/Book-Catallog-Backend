@@ -21,4 +21,5 @@ export default {
   node_env: process.env.NODE_ENV || "production",
   jwt,
   cookieOptions,
+  bcrypt_salt_round: Number(process.env.BCRYPT_SALT_ROUND!),
 };

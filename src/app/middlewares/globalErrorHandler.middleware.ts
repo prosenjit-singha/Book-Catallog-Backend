@@ -4,6 +4,13 @@ import httpsStatus from "http-status";
 import { ApiResponse } from "@/types";
 import { JsonWebTokenError } from "jsonwebtoken";
 import config from "@/config";
+import { ZodError } from "zod";
+import handleZodError from "@/error/handleZodError";
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientValidationError,
+} from "@prisma/client/runtime/library";
+import handlePrismaError from "@/error/handlePrismaError";
 
 const globalErrorHandler: ErrorRequestHandler = (
   err,
@@ -14,14 +21,18 @@ const globalErrorHandler: ErrorRequestHandler = (
   let status: number = httpsStatus.INTERNAL_SERVER_ERROR;
   let message: string = "Something went wrong!";
   let error: ApiResponse["error"] | null = null;
-  if (err?.name === "ValidationError") {
+  if (err instanceof PrismaClientValidationError) {
     status = httpsStatus.BAD_REQUEST;
-    // set error here
+    error = handlePrismaError.handleValidationError(err);
     message = "Validation Error Occur";
-  } else if (err?.name === "CastError") {
+  } else if (err instanceof PrismaClientKnownRequestError) {
     status = httpsStatus.BAD_REQUEST;
-    // set error here
-    message = "Cast Error Occur";
+    message = "Duplicate Value Exist";
+    error = handlePrismaError.handleClientKnownRequestError(err);
+  } else if (err instanceof ZodError) {
+    status = httpsStatus.BAD_REQUEST;
+    message = "Validation error occur.";
+    error = handleZodError(err);
   } else if (err instanceof ApiError) {
     status = err.status;
     message = err.message;
