@@ -13,7 +13,7 @@ router.post(
   auth("admin"),
   ctrl.createCategory
 );
-router.get("/:id", auth("admin"), ctrl.getSingleCategory);
+router.get("/:id", auth("admin", "customer"), ctrl.getSingleCategory);
 router.patch(
   "/:id",
   validateReq(schema.update),
