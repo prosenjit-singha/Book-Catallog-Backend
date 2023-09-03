@@ -4,6 +4,15 @@ import type { Prisma, User } from "@prisma/client";
 import httpStatus from "http-status";
 
 const select: Prisma.UserSelect = {
+  id: true,
+  name: true,
+  email: true,
+  address: true,
+  contactNo: true,
+  role: true,
+  profileImg: true,
+  updatedAt: true,
+  createdAt: true,
   password: false,
 };
 
@@ -32,7 +41,7 @@ const updateUserProfile = async (
 };
 
 const getAllUsers = async () => {
-  const result = await prisma.user.findMany({ select });
+  const result = await prisma.user.findMany({ where: {}, select });
   return result;
 };
 

@@ -13,6 +13,7 @@ const authorize =
     try {
       // bearer refresh-token-demo-text
       const token = req.headers.authorization;
+
       if (!token) {
         throw new ApiError(httpStatus.UNAUTHORIZED, "You are not authorized");
       }
