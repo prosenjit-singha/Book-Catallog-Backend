@@ -4,7 +4,8 @@ import { JwtPayload, Secret } from "jsonwebtoken";
 import configs from "@/config";
 import ApiError from "@/error/apiError";
 import { jwtHelpers } from "@/helpers/jwt.helper";
-import { UserRole } from "@/types";
+// import { UserRole } from "@/types";
+import type { UserRole } from "@prisma/client";
 
 const authorize =
   (...requiredRoles: UserRole[]): RequestHandler =>
