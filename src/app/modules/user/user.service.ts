@@ -7,7 +7,7 @@ const select: Prisma.UserSelect = {
   password: false,
 };
 
-export const getUserProfile = async (id: string): Promise<User> => {
+const getUserProfile = async (id: string): Promise<User> => {
   const data = await prisma.user.findUnique({ where: { id }, select });
   if (!data) {
     throw new ApiError(
@@ -19,7 +19,7 @@ export const getUserProfile = async (id: string): Promise<User> => {
   return data;
 };
 
-export const updateUserProfile = async (
+const updateUserProfile = async (
   id: string,
   context: Partial<User>
 ): Promise<User> => {
@@ -31,12 +31,12 @@ export const updateUserProfile = async (
   return result;
 };
 
-export const getAllUsers = async () => {
+const getAllUsers = async () => {
   const result = await prisma.user.findMany({ select });
   return result;
 };
 
-export const getSingleUser = async (id: string) => {
+const getSingleUser = async (id: string) => {
   const result = await prisma.user.findUnique({
     where: { id },
     select,
@@ -45,11 +45,19 @@ export const getSingleUser = async (id: string) => {
   return result;
 };
 
-export const deleteUser = async (id: string) => {
+const deleteUser = async (id: string) => {
   const result = await prisma.user.delete({
     where: { id },
     select,
   });
 
   return result;
+};
+
+export default {
+  getAllUsers,
+  getSingleUser,
+  getUserProfile,
+  updateUserProfile,
+  deleteUser,
 };
