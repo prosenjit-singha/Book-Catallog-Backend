@@ -32,7 +32,7 @@ const authorize =
 
       // check if the user is exist on database
       req.user = {
-        id: decoded._id,
+        userId: decoded.userId,
         email: decoded.email,
         role: decoded.role,
       };

@@ -15,4 +15,6 @@ router.post(
 
 router.get("/", auth("admin", "customer"), ctrl.getAllOrders);
 
+router.get("/:orderId", auth("admin", "customer"), ctrl.getSingleOrder);
+
 export default router;

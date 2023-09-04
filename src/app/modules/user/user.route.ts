@@ -9,6 +9,6 @@ const router = express.Router();
 router.get("/", auth("admin"), ctrl.getAllUsers);
 router.get("/:id", auth("admin"), ctrl.getSingleUser);
 router.patch("/:id", auth("admin"), ctrl.updateUser);
-router.patch("/:id", auth("admin"), ctrl.deleteUser);
+router.delete("/:id", auth("admin"), ctrl.deleteUser);
 
 export default router;

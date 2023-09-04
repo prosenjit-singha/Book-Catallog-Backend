@@ -54,13 +54,13 @@ model Book {
 }
 
 model Order {
-  id            String      @unique @default(uuid())
-  userId        String
-  user          User        @relation(fields: [userId], references: [id])
-  orderedBookes Json
-  status        OrderStatus @default(pending)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  id           String      @unique @default(uuid())
+  userId       String
+  user         User        @relation(fields: [userId], references: [id])
+  orderedBooks Json
+  status       OrderStatus @default(pending)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
 
   @@map("orders")
 }

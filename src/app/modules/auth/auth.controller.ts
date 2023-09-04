@@ -19,8 +19,8 @@ const signUp = catchAsync(async (req, res) => {
   sendResponse(res, {
     status: 200,
     data: {
-      user: data,
       accessToken,
+      user: data,
     },
     message: "User successfully signed up",
   });
