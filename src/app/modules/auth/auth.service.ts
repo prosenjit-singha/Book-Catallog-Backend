@@ -1,8 +1,8 @@
-import config from "@/config";
-import ApiError from "@/error/apiError";
-import { jwtHelpers } from "@/helpers";
-import { prisma } from "@/helpers/prisma.helper";
-import type { AuthCredential } from "@/types/credential.type";
+import config from "../../../config";
+import ApiError from "../../../error/apiError";
+import { jwtHelpers } from "../../../helpers";
+import { prisma } from "../../../helpers/prisma.helper";
+import type { AuthCredential } from "../../../types/credential.type";
 import { User } from "@prisma/client";
 import bcrypt from "bcrypt";
 import httpStatus from "http-status";

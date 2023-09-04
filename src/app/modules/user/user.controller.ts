@@ -1,5 +1,5 @@
-import catchAsync from "@/shared/catchAsync";
-import sendResponse from "@/shared/sendResponse";
+import catchAsync from "../../../shared/catchAsync";
+import sendResponse from "../../../shared/sendResponse";
 import service from "./user.service";
 import { Request } from "express";
 

@@ -1,4 +1,4 @@
-import { dateRegex } from "@/constants";
+import { dateRegex } from "../constants";
 import { z } from "zod";
 
 export const dateSchema = z

@@ -1,5 +1,5 @@
-import ApiError from "@/error/apiError";
-import { prisma } from "@/helpers/prisma.helper";
+import ApiError from "../../../error/apiError";
+import { prisma } from "../../../helpers/prisma.helper";
 import type { Prisma, User } from "@prisma/client";
 import httpStatus from "http-status";
 
@@ -25,6 +25,7 @@ const updateUserProfile = async (
     data: context,
     select,
   });
+
   return result;
 };
 

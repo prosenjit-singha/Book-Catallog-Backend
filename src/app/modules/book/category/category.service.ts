@@ -1,4 +1,4 @@
-import { prisma } from "@/helpers/prisma.helper";
+import { prisma } from "../../../../helpers/prisma.helper";
 import { Category } from "@prisma/client";
 
 export const getAllCategories = async () => {

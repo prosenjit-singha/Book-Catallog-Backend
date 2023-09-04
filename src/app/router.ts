@@ -1,10 +1,10 @@
 import express from "express";
 import type { Router } from "express";
-import AuthRoute from "@/app/modules/auth/auth.route";
-import UserRoute from "@/app/modules/user/user.route";
-import CategoryRoute from "@/app/modules/book/category/category.route";
-import OrderRoute from "@/app/modules/book/order/order.route";
-import BookRoute from "@/app/modules/book/book.route";
+import AuthRoute from "./modules/auth/auth.route";
+import UserRoute from "./modules/user/user.route";
+import CategoryRoute from "./modules/book/category/category.route";
+import OrderRoute from "./modules/book/order/order.route";
+import BookRoute from "./modules/book/book.route";
 import authorize from "./middlewares/auth.middleware";
 import { getUserProfile } from "./modules/user/user.controller";
 

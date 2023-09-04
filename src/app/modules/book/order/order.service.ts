@@ -1,5 +1,5 @@
-import ApiError from "@/error/apiError";
-import { prisma } from "@/helpers/prisma.helper";
+import ApiError from "../../../../error/apiError";
+import { prisma } from "../../../../helpers/prisma.helper";
 import { Order, Prisma, UserRole } from "@prisma/client";
 import httpStatus from "http-status";
 

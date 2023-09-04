@@ -1,6 +1,6 @@
 import * as service from "./order.service";
-import catchAsync from "@/shared/catchAsync";
-import sendResponse from "@/shared/sendResponse";
+import catchAsync from "../../../../shared/catchAsync";
+import sendResponse from "../../../../shared/sendResponse";
 import { Request } from "express";
 
 export const getAllOrders = catchAsync(async (req: Request, res) => {

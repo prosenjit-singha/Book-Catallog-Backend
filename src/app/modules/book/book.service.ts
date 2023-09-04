@@ -1,9 +1,9 @@
-import { prisma } from "@/helpers/prisma.helper";
-import pick from "@/shared/pick";
+import { prisma } from "../../../helpers/prisma.helper";
+import pick from "../../../shared/pick";
 import { Book, Prisma } from "@prisma/client";
 import { BookConst } from "./book.const";
-import { paginationFields } from "@/constants";
-import calculatePagination from "@/helpers/pagination.helper";
+import { paginationFields } from "../../../constants";
+import calculatePagination from "../../../helpers/pagination.helper";
 
 const select: Prisma.BookSelect = {
   id: true,

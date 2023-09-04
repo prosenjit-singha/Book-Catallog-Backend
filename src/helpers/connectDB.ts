@@ -1,3 +1,3 @@
-import configs from "@/config";
+import configs from "../config";
 
 export const connectDB = async () => {};

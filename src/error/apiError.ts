@@ -1,4 +1,4 @@
-import { ApiResponse } from "@/types";
+import { ApiResponse } from "../types";
 
 class ApiError extends Error {
   status: number;

@@ -1,6 +1,6 @@
 import * as service from "./book.service";
-import catchAsync from "@/shared/catchAsync";
-import sendResponse from "@/shared/sendResponse";
+import catchAsync from "../../../shared/catchAsync";
+import sendResponse from "../../../shared/sendResponse";
 
 export const getAllBooks = catchAsync(async (req, res) => {
   const { data, meta } = await service.getAllBooks(req.query);

@@ -1,10 +1,6 @@
-// Register alias always define it on top of module
-import moduleAlias from "module-alias";
-moduleAlias.addAlias("@", __dirname);
-
 import app from "./app";
 import { Server } from "http";
-import config from "@/config";
+import config from "./config";
 
 process.on("uncaughtException", (error) => {
   console.log("UncaughtException", error);

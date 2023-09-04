@@ -1,16 +1,16 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
-import ApiError from "@/error/apiError";
+import ApiError from "../../error/apiError";
 import httpsStatus from "http-status";
-import { ApiResponse } from "@/types";
+import { ApiResponse } from "../../types";
 import { JsonWebTokenError } from "jsonwebtoken";
-import config from "@/config";
+import config from "../../config";
 import { ZodError } from "zod";
-import handleZodError from "@/error/handleZodError";
+import handleZodError from "../../error/handleZodError";
 import {
   PrismaClientKnownRequestError,
   PrismaClientValidationError,
 } from "@prisma/client/runtime/library";
-import handlePrismaError from "@/error/handlePrismaError";
+import handlePrismaError from "../../error/handlePrismaError";
 
 const globalErrorHandler: ErrorRequestHandler = (
   err,

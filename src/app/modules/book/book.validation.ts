@@ -1,4 +1,4 @@
-import { dateSchema } from "@/validations";
+import { dateSchema } from "../../../validations";
 import { z } from "zod";
 
 const book = z.object({

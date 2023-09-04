@@ -1,7 +1,7 @@
 import express from "express";
 import * as ctrl from "./order.controller";
-import auth from "@/app/middlewares/auth.middleware";
-import validateReq from "@/app/middlewares/validateRequest";
+import auth from "../../../middlewares/auth.middleware";
+import validateReq from "../../../middlewares/validateRequest";
 import * as schema from "./order.validation";
 
 const router = express.Router();
