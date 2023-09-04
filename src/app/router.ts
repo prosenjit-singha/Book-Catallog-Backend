@@ -5,6 +5,8 @@ import UserRoute from "@/app/modules/user/user.route";
 import CategoryRoute from "@/app/modules/book/category/category.route";
 import OrderRoute from "@/app/modules/book/order/order.route";
 import BookRoute from "@/app/modules/book/book.route";
+import authorize from "./middlewares/auth.middleware";
+import { getUserProfile } from "./modules/user/user.controller";
 
 const router = express.Router();
 
@@ -37,5 +39,7 @@ const moduleRoutes: ModuleRoutes = [
 ];
 
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
+
+router.get("/profile", authorize("admin", "customer"), getUserProfile);
 
 export default router;

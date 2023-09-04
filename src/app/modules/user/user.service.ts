@@ -16,18 +16,6 @@ const select: Prisma.UserSelect = {
   password: false,
 };
 
-const getUserProfile = async (id: string): Promise<User> => {
-  const data = await prisma.user.findUnique({ where: { id }, select });
-  if (!data) {
-    throw new ApiError(
-      httpStatus.NOT_FOUND,
-      "Failed to retrieve user profile",
-      "User does not exist"
-    );
-  }
-  return data;
-};
-
 const updateUserProfile = async (
   id: string,
   context: Partial<User>
@@ -66,7 +54,6 @@ const deleteUser = async (id: string) => {
 export default {
   getAllUsers,
   getSingleUser,
-  getUserProfile,
   updateUserProfile,
   deleteUser,
 };

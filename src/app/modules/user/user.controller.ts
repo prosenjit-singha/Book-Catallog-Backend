@@ -1,6 +1,7 @@
 import catchAsync from "@/shared/catchAsync";
 import sendResponse from "@/shared/sendResponse";
 import service from "./user.service";
+import { Request } from "express";
 
 export const getAllUsers = catchAsync(async (req, res) => {
   const data = await service.getAllUsers();
@@ -14,6 +15,16 @@ export const getAllUsers = catchAsync(async (req, res) => {
 
 export const getSingleUser = catchAsync(async (req, res) => {
   const data = await service.getSingleUser(req.params.id);
+
+  sendResponse(res, {
+    data,
+    message: "User data retrieved successfully",
+    status: 200,
+  });
+});
+
+export const getUserProfile = catchAsync(async (req: Request, res) => {
+  const data = await service.getSingleUser(req.user.userId);
 
   sendResponse(res, {
     data,

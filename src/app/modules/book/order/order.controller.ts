@@ -13,7 +13,6 @@ export const getAllOrders = catchAsync(async (req: Request, res) => {
 });
 
 export const placeOrder = catchAsync(async (req: Request, res) => {
-  console.log(req.user);
   req.body.userId = req.user.userId;
   const data = await service.placeOrder(req.body);
   sendResponse(res, {
