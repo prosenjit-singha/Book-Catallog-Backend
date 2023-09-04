@@ -1,5 +1,7 @@
+import ApiError from "../../../../error/apiError";
 import { prisma } from "../../../../helpers/prisma.helper";
 import { Category } from "@prisma/client";
+import httpStatus from "http-status";
 
 export const getAllCategories = async () => {
   const result = await prisma.category.findMany({ where: {} });
@@ -13,6 +15,13 @@ export const createCategory = async (context: Category) => {
 
 export const getSingleCategory = async (id: string) => {
   const result = await prisma.category.findUnique({ where: { id } });
+  if (!result) {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      "Failed to retrieve category details",
+      "Category does not exist"
+    );
+  }
   return result;
 };
 

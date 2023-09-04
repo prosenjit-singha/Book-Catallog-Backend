@@ -27,8 +27,10 @@ const globalErrorHandler: ErrorRequestHandler = (
     message = "Validation Error Occur";
   } else if (err instanceof PrismaClientKnownRequestError) {
     status = httpsStatus.BAD_REQUEST;
-    message = "Duplicate Value Exist";
-    error = handlePrismaError.handleClientKnownRequestError(err);
+    const { error: prismaError, message: msg } =
+      handlePrismaError.handleClientKnownRequestError(err);
+    message = msg;
+    error = prismaError;
   } else if (err instanceof ZodError) {
     status = httpsStatus.BAD_REQUEST;
     message = "Validation error occur.";

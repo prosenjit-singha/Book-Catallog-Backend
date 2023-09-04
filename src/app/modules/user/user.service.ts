@@ -40,6 +40,14 @@ const getSingleUser = async (id: string) => {
     select,
   });
 
+  if (!result) {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      "Failed to retrieve user data",
+      "User doesn't exist"
+    );
+  }
+
   return result;
 };
 

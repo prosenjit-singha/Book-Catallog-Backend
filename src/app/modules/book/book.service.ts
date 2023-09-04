@@ -4,6 +4,8 @@ import { Book, Prisma } from "@prisma/client";
 import { BookConst } from "./book.const";
 import { paginationFields } from "../../../constants";
 import calculatePagination from "../../../helpers/pagination.helper";
+import ApiError from "../../../error/apiError";
+import httpStatus from "http-status";
 
 const select: Prisma.BookSelect = {
   id: true,
@@ -46,6 +48,13 @@ export const createBook = async (context: Book) => {
 
 export const getSingleBook = async (id: string) => {
   const result = await prisma.book.findUnique({ where: { id }, select });
+  if (!result) {
+    throw new ApiError(
+      httpStatus.NOT_FOUND,
+      "Failed to retrieve book data",
+      "Book does not exist"
+    );
+  }
   return result;
 };
 
