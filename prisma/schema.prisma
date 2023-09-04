@@ -54,13 +54,13 @@ model Book {
 }
 
 model Order {
-  id            String   @unique @default(uuid())
+  id            String      @unique @default(uuid())
   userId        String
-  user          User     @relation(fields: [userId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
   orderedBookes Json
-  status        String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  status        OrderStatus @default(pending)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 
   @@map("orders")
 }
@@ -82,4 +82,10 @@ model ReviewAndRating {
 enum UserRole {
   admin
   customer
+}
+
+enum OrderStatus {
+  pending
+  shipped
+  delivered
 }
