@@ -2,6 +2,8 @@
 
 #### Live Link: https://book-catalog-lake-two.vercel.app
 
+[Postman Collection](Book Catalog (PJ).postman_collection.json)
+
 Sample Admin Credentials:
 
 ```json
