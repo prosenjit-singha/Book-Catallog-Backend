@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", auth("admin", "customer"), ctrl.getAllCategories);
 router.post(
-  "/",
+  "/create-category",
   validateReq(schema.create),
   auth("admin"),
   ctrl.createCategory
