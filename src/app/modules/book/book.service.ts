@@ -121,3 +121,8 @@ export const getAllBooks = async (query: Record<string, any>) => {
 
   return { data, meta: { totalResults, page, limit, sortBy, sortOrder } };
 };
+
+export const getBooksByCategoryId = async (categoryId: string) => {
+  const book = await prisma.book.findMany({ where: { categoryId }, select });
+  return book;
+};

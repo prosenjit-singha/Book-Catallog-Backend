@@ -47,3 +47,12 @@ export const getSingleBook = catchAsync(async (req, res) => {
     message: "Book data retrieved successfully",
   });
 });
+
+export const getBooksByCategoryId = catchAsync(async (req, res) => {
+  const data = await service.getBooksByCategoryId(req.params.categoryId);
+  sendResponse(res, {
+    status: 200,
+    data,
+    message: "Books data retrieved successfully",
+  });
+});

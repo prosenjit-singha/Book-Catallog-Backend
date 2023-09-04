@@ -20,12 +20,19 @@ router.post(
   ctrl.createBook
 );
 
+// Get Books By Category ID
+router.get(
+  "/:categoryId/category",
+  auth("admin", "customer"),
+  ctrl.getBooksByCategoryId
+);
+
 router.get("/:id", auth("admin", "customer"), ctrl.getSingleBook);
 
 router.patch(
   "/:id",
   validateReq(schema.updateBook),
-  auth("admin", "customer"),
+  auth("admin"),
   ctrl.updateBook
 );
 
