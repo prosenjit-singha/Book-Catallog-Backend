@@ -34,14 +34,14 @@ Sample Admin Credentials:
 ### Books
 
 - /api/v1/books/create-book **(POST)**
-- /api/v1/books **(GET)**
-- /api/v1/books/:categoryId/category **(GET)**
-- /api/v1/books/:id **(GET)**
-- /api/v1/books/:id **(PATCH)**
-- /api/v1/books/:id **(DELETE)**
+- /api/v1/books **(GET ALL)**
+- /api/v1/books/919734ef-fdff-4dcf-812c-2381dc150783/category **(GET BY CATEGORY ID)**
+- /api/v1/books/6ac4a2bd-67ff-4426-aff0-92b4fb6a8458 **(GET SINGLE BOOk)**
+- /api/v1/books/6ac4a2bd-67ff-4426-aff0-92b4fb6a8458 **(PATCH)** _UPDATE BOOK_
+- /api/v1/books/7f320b2a-accb-497e-b3f4-4819c6a5c2d1 **(DELETE)**
 
 ### Orders
 
 - /api/v1/orders/create-order **(POST)**
 - /api/v1/orders **(GET)**
-- /api/v1/orders/:orderId **(GET)**
+- /api/v1/orders/7a3d3d40-89c2-4120-b683-db64a8218606 **(GET)**
