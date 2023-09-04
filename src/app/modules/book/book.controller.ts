@@ -6,8 +6,8 @@ export const getAllBooks = catchAsync(async (req, res) => {
   const { data, meta } = await service.getAllBooks(req.query);
   sendResponse(res, {
     status: 200,
-    data,
     meta,
+    data,
     message: "All books retrieved successfully",
   });
 });

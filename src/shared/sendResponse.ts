@@ -9,8 +9,8 @@ const sendResponse = <T>(
     status,
     error: null,
     message,
-    data,
     meta,
+    data,
   };
   res.status(status).json(payload);
 };

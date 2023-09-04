@@ -5,7 +5,7 @@ export type ApiResponse<T = null> = {
   data: T;
   meta?: {
     page: number;
-    limit: number;
+    size: number;
     totalResults: number;
     sortBy: string;
     sortOrder: "asc" | "desc" | 1 | -1 | "ascending" | "descending";

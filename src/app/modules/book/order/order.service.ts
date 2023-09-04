@@ -18,7 +18,10 @@ export const getAllOrders = async ({ userId, role }: UserInfo) => {
     userId: role === "admin" ? undefined : userId,
   };
 
-  const result = await prisma.order.findMany({ where });
+  const result = await prisma.order.findMany({
+    where,
+    orderBy: { createdAt: "desc" },
+  });
   return result;
 };
 

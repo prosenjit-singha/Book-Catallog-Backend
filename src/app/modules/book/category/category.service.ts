@@ -4,7 +4,10 @@ import { Category } from "@prisma/client";
 import httpStatus from "http-status";
 
 export const getAllCategories = async () => {
-  const result = await prisma.category.findMany({ where: {} });
+  const result = await prisma.category.findMany({
+    where: {},
+    orderBy: { createdAt: "desc" },
+  });
   return result;
 };
 

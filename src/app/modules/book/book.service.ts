@@ -71,7 +71,7 @@ export const deleteBook = async (id: string) => {
 export const getAllBooks = async (query: Record<string, any>) => {
   const { search, ...filterData } = pick(query, BookConst.filterableFields);
   const options = pick(query, paginationFields);
-  const { limit, page, skip, sortBy, sortOrder } = calculatePagination(options);
+  const { size, page, skip, sortBy, sortOrder } = calculatePagination(options);
 
   const andConditions = [];
 
@@ -120,7 +120,7 @@ export const getAllBooks = async (query: Record<string, any>) => {
   const data = await prisma.book.findMany({
     where: whereConditions,
     skip,
-    take: limit,
+    take: size,
     orderBy: { [sortBy]: sortOrder },
     select,
   });
@@ -128,7 +128,7 @@ export const getAllBooks = async (query: Record<string, any>) => {
     where: whereConditions,
   });
 
-  return { data, meta: { totalResults, page, limit, sortBy, sortOrder } };
+  return { data, meta: { totalResults, page, size, sortBy, sortOrder } };
 };
 
 export const getBooksByCategoryId = async (categoryId: string) => {
