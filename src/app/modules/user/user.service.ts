@@ -30,7 +30,11 @@ const updateUserProfile = async (
 };
 
 const getAllUsers = async () => {
-  const result = await prisma.user.findMany({ where: {}, select });
+  const result = await prisma.user.findMany({
+    where: {},
+    select,
+    orderBy: { createdAt: "desc" },
+  });
   return result;
 };
 
