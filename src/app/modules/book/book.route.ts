@@ -36,6 +36,6 @@ router.patch(
   ctrl.updateBook
 );
 
-router.delete("/:id", auth("admin", "customer"), ctrl.deleteBook);
+router.delete("/:id", auth("admin"), ctrl.deleteBook);
 
 export default router;
