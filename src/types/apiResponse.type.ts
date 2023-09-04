@@ -4,10 +4,10 @@ export type ApiResponse<T = null> = {
   message: string;
   data: T;
   meta?: {
-    page: number;
-    size: number;
-    totalResults: number;
-    sortBy: string;
-    sortOrder: "asc" | "desc" | 1 | -1 | "ascending" | "descending";
+    page?: number;
+    size?: number;
+    totalResults?: number;
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
   };
 };
