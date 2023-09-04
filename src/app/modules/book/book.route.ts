@@ -14,7 +14,7 @@ router.get(
 );
 
 router.post(
-  "/",
+  "/create-book",
   validateReq(schema.createBook),
   auth("admin"),
   ctrl.createBook
