@@ -103,6 +103,12 @@ export const getAllBooks = async (query: Record<string, any>) => {
               lte: Number(value),
             },
           };
+        } else if (key === "category") {
+          return {
+            categoryId: {
+              equals: value,
+            },
+          };
         }
 
         return {
@@ -129,9 +135,4 @@ export const getAllBooks = async (query: Record<string, any>) => {
   });
 
   return { data, meta: { totalResults, page, size, sortBy, sortOrder } };
-};
-
-export const getBooksByCategoryId = async (categoryId: string) => {
-  const book = await prisma.book.findMany({ where: { categoryId }, select });
-  return book;
 };

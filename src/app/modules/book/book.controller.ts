@@ -49,9 +49,11 @@ export const getSingleBook = catchAsync(async (req, res) => {
 });
 
 export const getBooksByCategoryId = catchAsync(async (req, res) => {
-  const data = await service.getBooksByCategoryId(req.params.categoryId);
+  req.query.category = req.params.categoryId;
+  const { data, meta } = await service.getAllBooks(req.query);
   sendResponse(res, {
     status: 200,
+    meta,
     data,
     message: "Books data retrieved successfully",
   });
