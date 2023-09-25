@@ -47,12 +47,17 @@ const globalErrorHandler: ErrorRequestHandler = (
     message = err?.message;
   }
 
-  const responseObj: ApiResponse & { stack?: any } = {
-    status,
+  const responseObj: Omit<ApiResponse, "data" | "status"> & {
+    stack?: any;
+    statusCode: number;
+    success: boolean;
+  } = {
+    success: false,
+    statusCode: status,
     message,
     error,
     stack: config.node_env !== "production" ? err?.stack : undefined,
-    data: null,
+    // data: null,
   };
 
   res.status(status).json(responseObj);
