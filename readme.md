@@ -29,7 +29,7 @@ Sample Admin Credentials:
 
 - /api/v1/categories/create-category **(POST)**
 - /api/v1/categories **(GET All)**
-- /api/v1/categories/6f440589-4358-442d-9d99-3d5b551705a8 **(Single GET)**
+- /api/v1/categories/7184d0af-7aa8-46ee-b301-4b18114568df **(Single GET)**
 - /api/v1/categories/6f440589-4358-442d-9d99-3d5b551705a8 **(PATCH)** [UPDATE]
 - /api/v1/categories/a80b6453-ca03-4829-898d-f7b37e69b77b **(DELETE)**
 
