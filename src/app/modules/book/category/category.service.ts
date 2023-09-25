@@ -17,7 +17,21 @@ export const createCategory = async (context: Category) => {
 };
 
 export const getSingleCategory = async (id: string) => {
-  const result = await prisma.category.findUnique({ where: { id } });
+  const result = await prisma.category.findUnique({
+    where: { id },
+    include: {
+      books: {
+        select: {
+          id: true,
+          title: true,
+          author: true,
+          genre: true,
+          price: true,
+          publicationDate: true,
+        },
+      },
+    },
+  });
   if (!result) {
     throw new ApiError(
       httpStatus.NOT_FOUND,
