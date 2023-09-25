@@ -24,7 +24,7 @@ export const getAllOrders = async ({ userId, role }: UserInfo) => {
   });
   const totalResults = await prisma.order.count({ where });
 
-  return { data: result, meta: { totalResults } };
+  return { data: result, meta: undefined };
 };
 
 export const getSingleOrder = async (

@@ -134,5 +134,15 @@ export const getAllBooks = async (query: Record<string, any>) => {
     where: whereConditions,
   });
 
-  return { data, meta: { totalResults, page, size, sortBy, sortOrder } };
+  return {
+    data,
+    meta: {
+      total: totalResults,
+      totalPage: Math.ceil(totalResults / size),
+      page,
+      size,
+      sortBy,
+      sortOrder,
+    },
+  };
 };
